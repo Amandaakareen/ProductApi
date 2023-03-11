@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.example.productapi.entity.ProductEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,21 @@ public class ProductDTO {
     private Date created;
     private Date lastUpdated;
 
-    
+    public static ProductDTO mapTo(ProductEntity productEntity){
+        ProductDTO dto = new ProductDTO();
+
+        dto.setId(productEntity.getId());
+        dto.setTitle(productEntity.getTitle());
+        dto.setSku(productEntity.getSku());
+        dto.setBarcodes(productEntity.getBarcodes());
+        dto.setDescription(productEntity.getDescription());
+        dto.setPrice(productEntity.getPrice());
+        dto.setCreated(productEntity.getCreated());
+        dto.setLastUpdated(productEntity.getLastUpdated());
+        dto.setAttributes(productEntity.getAttributes().stream().map(a -> AttributesDTO.mapTo(a)).toList());
+        
+        return dto;
+    }
 
     
 }

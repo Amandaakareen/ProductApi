@@ -12,10 +12,4 @@ public class ProductListDTO {
     
     private Long total;
     private List<Map<String, Object>> items;
-    
-
-    
-
-   
-   
 }

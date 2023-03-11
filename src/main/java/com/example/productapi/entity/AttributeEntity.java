@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.example.productapi.Response.AttributeRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,44 @@ public class AttributeEntity {
 
     @Column(name = "PRICE")
     private String value;
+
+
+    public static AttributeEntity mapTo(AttributeRequest attributeRequest){
+        AttributeEntity attributeEntity = new AttributeEntity();
+        attributeEntity.setId(attributeRequest.getId());
+        attributeEntity.setName(attributeRequest.getName());
+        attributeEntity.setValue(attributeRequest.getValue());
+        
+        
+        return attributeEntity;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AttributeEntity other = (AttributeEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
 
    
